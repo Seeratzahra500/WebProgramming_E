@@ -5,7 +5,8 @@
    color:blue;
    text-align:center;
    background-image: url("bg.webp");
-
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 700;
  
 }
 .logo {
