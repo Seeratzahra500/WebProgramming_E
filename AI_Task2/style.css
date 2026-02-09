@@ -1,0 +1,387 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.game-area {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    cursor: crosshair;
+    user-select: none;
+    background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 40%, #228B22 70%, #1a6b1a 100%);
+}
+
+/* Hills */
+.hill {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.hill-left {
+    bottom: 28%;
+    left: -5%;
+    width: 50%;
+    height: 180px;
+    background: #2d8a2d;
+}
+
+.hill-right {
+    bottom: 26%;
+    right: -8%;
+    width: 60%;
+    height: 200px;
+    background: #3a9e3a;
+}
+
+/* Sun */
+.sun {
+    position: absolute;
+    top: 30px;
+    right: 80px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FFD700, #FFA500);
+    box-shadow: 0 0 40px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Clouds */
+.cloud {
+    position: absolute;
+    display: flex;
+    gap: 0;
+}
+
+.cloud-1 {
+    top: 50px;
+    left: 15%;
+}
+
+.cloud-2 {
+    top: 90px;
+    left: 55%;
+}
+
+.cloud-part {
+    width: 60px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.cloud-part.main {
+    width: 80px;
+    height: 40px;
+    margin-top: -10px;
+    margin-left: -20px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.cloud-2 .cloud-part {
+    width: 50px;
+    height: 25px;
+}
+
+.cloud-2 .cloud-part.main {
+    width: 70px;
+    height: 35px;
+    margin-top: -8px;
+    margin-left: -18px;
+}
+
+/* HUD */
+.hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 54px;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+.hud-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.score-value {
+    color: #FFD700;
+}
+
+.time-value {
+    color: #90EE90;
+}
+
+.time-value.low {
+    color: #FF4444;
+}
+
+.arrows-value {
+    color: #90EE90;
+}
+
+.arrows-value.low {
+    color: #FF4444;
+}
+
+/* Bow */
+.bow {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+.bow-body {
+    width: 20px;
+    height: 120px;
+    border: 6px solid #8B4513;
+    border-right: none;
+    border-radius: 60px 0 0 60px;
+    position: relative;
+}
+
+.bowstring {
+    position: absolute;
+    right: -3px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #D2B48C;
+}
+
+.bow-grip {
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 24px;
+    background: #654321;
+    border-radius: 4px;
+}
+
+/* Arrow */
+.arrow {
+    position: absolute;
+    display: none;
+    z-index: 6;
+    left: 0;
+    top: 0;
+}
+
+.arrow-shaft {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #8B4513, #A0522D);
+    position: relative;
+}
+
+.arrowhead {
+    position: absolute;
+    right: -14px;
+    top: -5px;
+    width: 0;
+    height: 0;
+    border-left: 16px solid #555;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+}
+
+.fletching {
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-right: 12px solid #CC0000;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+.fletching.top {
+    top: -6px;
+}
+
+.fletching.bottom {
+    top: 1px;
+}
+
+/* Target */
+.target {
+    position: absolute;
+    right: 80px;
+    width: 120px;
+    height: 120px;
+    transition: width 0.5s, height 0.5s;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.target-stand {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 40px;
+    background: #654321;
+}
+
+.target-rings {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.ring {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ring-1 {
+    width: 82%;
+    height: 82%;
+    background: #2222CC;
+}
+
+.ring-2 {
+    width: 75%;
+    height: 75%;
+    background: #CC2222;
+}
+
+.ring-3 {
+    width: 70%;
+    height: 70%;
+    background: #FFFFFF;
+}
+
+.ring-4 {
+    width: 60%;
+    height: 60%;
+    background: #FFD700;
+}
+
+.ring-5 {
+    width: 35%;
+    height: 35%;
+    background: #FF0000;
+}
+
+/* Hit Flash */
+.hit-flash {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 215, 0, 0.25);
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* Screens */
+.screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.start-screen {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.game-over-screen {
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+
+.screen-emoji {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.screen-title {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.screen-subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.screen-instructions {
+    font-size: 14px;
+    opacity: 0.7;
+    max-width: 400px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.game-over-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #FF4444;
+}
+
+.final-score {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.final-score-value {
+    color: #FFD700;
+    font-weight: bold;
+}
+
+.restart-btn {
+    padding: 14px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #228B22, #32CD32);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(34, 139, 34, 0.5);
+    transition: transform 0.2s;
+}
+
+.restart-btn:hover {
+    transform: scale(1.05);
+}
