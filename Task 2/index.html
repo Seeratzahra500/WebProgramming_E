@@ -1,0 +1,95 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('42465.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat">
+    <img src="bowarrow.png" alt="bow" class="bow" />
+    <img src="arrow.png" alt="arrow" class="arrow" />
+    <img src="target.png" alt="target" class="target" />
+
+    <div id="top">
+        <div id="score">Score: 0</div>
+        <div id="timer">Time: 30</div>
+    </div>
+
+    <script>
+        const bow = document.querySelector('.bow');
+        const arrow = document.querySelector('.arrow');
+        const target = document.querySelector('.target');
+        const timerDisplay = document.getElementById('timer');
+        const scoreDisplay = document.getElementById('score');
+
+        let score =0;
+        let timeLeft = 30;
+        let gameOver = false;
+
+        let speed = 5;
+        let moving = false;
+
+        document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' && !moving && !gameOver) {
+        movearrow();
+        }
+        });
+
+        const movearrow = () => {
+        moving = true;
+        let x = arrow.offsetLeft;
+        const y = arrow.offsetTop;
+        const moveInterval = setInterval(() => {
+        x += speed;
+        arrow.style.left = x + "px";
+
+        checkCollision();
+
+        if(x > window.innerWidth) {
+        clearInterval(moveInterval);
+        resetArrow();
+        }
+        }, 16);
+        };
+
+        const resetArrow = () => {
+        moving = false;
+        arrow.style.left = "280px";
+        };
+
+        const checkCollision = () => {
+        const a = arrow.getBoundingClientRect();
+        const t = target.getBoundingClientRect();
+        if (a.left < t.right && a.right > t.left && a.top < t.bottom && a.bottom > t.top) {
+        updateScore();
+        resetArrow();
+        }
+        };
+
+        const updateScore = () => {
+        score++;
+        scoreDisplay.textContent = `Score: ${score}`;
+        };
+
+        const startTimer = () => {
+        setInterval(() => {
+        if (!gameOver) {
+        updateTimer();
+        }
+        }, 1000);
+        };
+
+
+
+        const updateTimer = () => {
+        if (timeLeft > 0) {
+        timeLeft--;
+        timerDisplay.textContent = `Time: ${timeLeft}`;
+        } else {
+        gameOver = true;
+        alert(`Game Over! Your final score is ${score}.`);
+        }
+        };
+        startTimer();
+    </script>
+</body>
+</html>
