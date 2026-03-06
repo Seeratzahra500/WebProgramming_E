@@ -1,20 +1,21 @@
-const express = require('express');
-const session = require('express-session');
-
+const express = require("express");
 const app = express();
 
-// Configure session middleware
-app.use(session({
-    secret: "gggggghhhhhh",
-    resave: false,
-    saveUninitialized: false
-}));
+const userRoutes = require("./user");
 
+// middleware
 app.use(express.json());
 
-const sessionRoutes = require('./routes/sessionRoutes');
-app.use('/session', sessionRoutes);
+// use routes
+app.use("/user", userRoutes);
 
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
+// main route
+app.get("/", (req, res) => {
+    res.send("Welcome to Express Server");
+});
+
+// server start
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
