@@ -98,16 +98,7 @@ app.get('/dashboard', isAuthenticated, (req, res) => {
   // Output: { message: "Welcome username" }
 });
 
-// GET /logout — Destroy session and logout
-app.get('/logout', (req, res) => {
-  req.session.destroy((error) => {
-    if (error) {
-      return res.status(500).json({ message: 'Logout failed' });
-    }
-    res.status(200).json({ message: 'Logout successful' });
-    // Output: { message: "Logout successful" }
-  });
-});
+
 
 // ─────────────────────────────────────────────
 // Start Server
